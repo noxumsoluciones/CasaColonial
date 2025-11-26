@@ -1,0 +1,92 @@
+/* Archivo: brochure.css (Pegado aquí para facilitar copia/pega en un archivo separado) */
+*{box-sizing:border-box}
+body{font-family:Inter,system-ui,Segoe UI,Arial; margin:0; color:#222; background:linear-gradient(180deg,var(--bone),#fff);}
+.container{max-width:1100px;margin:0 auto;padding:28px}
+.header-grid{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:72px;height:72px;object-fit:contain;border-radius:12px;box-shadow:0 10px 25px rgba(43,34,60,0.12)}
+.brand-text h1{margin:0;font-size:18px;color:var(--purple)}
+.top-nav a{margin-left:12px;text-decoration:none;color:var(--muted)}
+
+
+.hero{padding:60px 0;background:radial-gradient(600px 200px at var(--mx,var(--my,50%)), rgba(42,122,226,0.06), transparent 20%), linear-gradient(120deg,var(--blue) 0%, var(--purple) 60%); color:white; border-bottom-left-radius:40px;border-bottom-right-radius:40px;position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:center}
+.hero h2{font-size:34px;margin:0 0 8px}
+.lead{opacity:.95;margin:0 0 18px}
+.hero .mockup{background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.06));border-radius:18px;padding:18px;box-shadow:0 20px 50px rgba(10,10,20,0.2);}
+.mockup .screen{height:200px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.06));backdrop-filter: blur(4px)}
+.badge{margin-top:12px;display:inline-block;background:rgba(255,255,255,0.08);padding:6px 10px;border-radius:10px;font-size:12px}
+.cta{margin-top:18px}
+.btn{display:inline-block;padding:12px 16px;border-radius:12px;text-decoration:none;font-weight:600}
+.btn.primary{background:var(--bone);color:var(--purple);box-shadow:0 10px 20px rgba(43,34,60,0.12)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.95);margin-left:10px}
+
+
+.card-group{display:flex;gap:18px;margin-top:-40px}
+.card{background:var(--bone);border-radius:16px;padding:18px;box-shadow:0 14px 30px rgba(12,12,16,0.06);flex:1}
+.card.highlight{border:2px solid rgba(42,122,226,0.08)}
+.pill-list{display:flex;gap:8px;padding:0;list-style:none}
+.pill-list li{background:rgba(42,122,226,0.06);padding:6px 10px;border-radius:999px}
+
+
+.service{margin-top:36px;padding:22px;background:white;border-radius:16px;box-shadow:0 12px 30px rgba(10,10,20,0.04)}
+.pricing-grid{display:flex;gap:12px;margin-top:12px}
+.pricing-card{flex:1;padding:12px;border-radius:12px;border:1px solid rgba(10,10,20,0.04)}
+.price{font-weight:700;margin-top:8px;color:var(--purple)}
+.deliverables ul{margin:8px 0 0 18px}
+
+
+.accordion{margin-top:12px}
+.accordion-toggle{background:linear-gradient(90deg,var(--purple),var(--blue));color:white;padding:10px;border-radius:10px;border:none;cursor:pointer}
+.accordion-panel{overflow:hidden;max-height:0;transition:max-height .36s ease;padding:0 6px}
+.media-grid{display:flex;gap:8px;margin-top:12px}
+.media-grid img{width:120px;height:80px;object-fit:cover;border-radius:8px;cursor:pointer}
+.video-thumb{width:120px;height:80px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.06);cursor:pointer}
+
+
+.two-cols{display:flex;gap:18px}
+.costs{display:flex;gap:12px;margin-top:12px}
+.cost{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));padding:8px;border-radius:10px}
+
+
+.pricing-section{margin-top:30px}
+.pricing-table{background:linear-gradient(180deg, #fff, rgba(250,247,242,0.8));padding:12px;border-radius:12px}
+.price-row{display:flex;justify-content:space-between;padding:12px;border-bottom:1px dashed rgba(10,10,10,0.03)}
+.price-row.highlight{background:linear-gradient(90deg, rgba(91,44,130,0.06), rgba(42,122,226,0.04));border-radius:8px}
+
+
+.contact-form{background:rgba(250,247,242,0.9);padding:12px;border-radius:12px}
+.grid-2{display:flex;gap:8px}
+.contact-form input, .contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e7e7e7}
+.actions{display:flex;gap:8px;margin-top:8px}
+
+
+.site-footer{padding:20px 0;background:linear-gradient(90deg, rgba(91,44,130,0.06), rgba(42,122,226,0.02));margin-top:30px}
+.footer-grid{display:flex;justify-content:space-between}
+
+
+/* Modal */
+.media-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:all .2s}
+.media-modal.open{pointer-events:auto;opacity:1;background:rgba(8,8,12,0.6)}
+.media-modal .modal-inner{background:white;border-radius:12px;padding:12px;max-width:900px;width:95%;max-height:80vh;overflow:auto;position:relative}
+.media-modal video, .media-modal img{width:100%;height:auto;border-radius:8px}
+.media-modal .close{position:absolute;right:8px;top:8px;background:transparent;border:none;font-size:20px}
+
+
+/* Small screens */
+@media (max-width:900px){
+.hero-inner{grid-template-columns:1fr}
+.header-grid{flex-direction:column;align-items:flex-start}
+.card-group{flex-direction:column}
+.two-cols{flex-direction:column}
+.pricing-grid{flex-direction:column}
+}
+
+
+/* Micro interaction */
+.pricing-card:hover{transform:translateY(-6px);transition:transform .25s}
+.pulse{animation:pulse 1.8s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+
+/* End of brochure.css */

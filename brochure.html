@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Comercial | Noxum Soluciones</title>
+    
+    <!-- Tailwind CSS (Framework de diseño) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome (Iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fuentes de Google (Montserrat y Open Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Animaciones AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        noxum: {
+                            purple: '#4c1d95', /* Morado Base */
+                            lightPurple: '#8b5cf6',
+                            blue: '#2563eb', /* Azul Base */
+                            cyan: '#06b6d4',
+                            bone: '#F5F5F0', /* Blanco Hueso */
+                            dark: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F5F5F0; /* Blanco Hueso */
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Degradado personalizado Noxum */
+        .bg-gradient-noxum {
+            background: linear-gradient(135deg, #4c1d95 0%, #2563eb 100%);
+        }
+        
+        .text-gradient-noxum {
+            background: linear-gradient(135deg, #4c1d95 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card-shadow:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -5px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F5F5F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4c1d95;
+            border-radius: 5px;
+        }
+
+        .feature-icon {
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            padding: 10px;
+            color: #2563eb;
+        }
+
+        /* Hero Pattern */
+        .hero-pattern {
+            background-image: radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+        }
+        /* --- CAROUSEL STYLES - CORRECCIÓN DE ALTURA Y ACUMPLAMIENTO --- */
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+            /* Altura del 70% del viewport - REQUERIDO */
+            height: 70vh; 
+            width: 100vw;
+        }
+
+        .gallery-track {
+            display: flex;
+            height: 100%;
+            /* Asumiendo 10 elementos originales, duplicamos a 20 para el loop. */
+            width: 2000vw; 
+            animation: scroll-left 50s linear infinite; /* Animación de desplazamiento continuo */
+            will-change: transform;
+        }
+
+        .gallery-track:hover {
+            animation-play-state: paused; /* Detener al pasar el mouse */
+        }
+
+        .gallery-item {
+            flex-shrink: 0;
+            /* Cada item ocupa el 100% del ancho visible (100vw) */
+            /*width: 100vw; */
+            height: 100%;
+            /* Centrar el contenido verticalmente si es necesario */
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+        }
+        
+        /* ESTILO CLAVE: Hace que la imagen/video se ajuste completamente a la altura de 70vh 
+           y el ancho se ajuste proporcionalmente, mostrando todo el contenido sin cortar. */
+        .gallery-item > video, .gallery-item > img {
+            max-width: 100%;
+            max-height: 100%;
+            /* Usar 'contain' para mostrar la imagen/video completo, dejando espacio si la proporción es diferente */
+            object-fit: contain; 
+        }
+        
+        /* Keyframe para el desplazamiento de la galería (de derecha a izquierda) */
+        @keyframes scroll-left {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                /* Mueve la distancia de 10 elementos * 100vw = 1000vw para un loop perfecto */
+                transform: translateX(-1000vw);
+            }
+        }
+        /* --- END CAROUSEL STYLES --- */
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-noxum-bone/90 backdrop-blur-md border-b border-gray-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="Imagen1.png" alt="Logo" class="h-12 w-12">
+                    <span class="font-heading font-bold text-xl text-gray-800 tracking-wider">NOXUM <span class="text-noxum-blue">SOLUCIONES</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#marketing" class="text-gray-600 hover:text-noxum-purple font-semibold transition">Marketing</a>
+                    <a href="#web" class="text-gray-600 hover:text-noxum-purple font-semibold transition">Desarrollo Web</a>
+                    <a href="#contable" class="text-gray-600 hover:text-noxum-purple font-semibold transition">Contable</a>
+                    <a href="#erp" class="text-gray-600 hover:text-noxum-purple font-semibold transition">ERP</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex">
+                    <a href="#contacto" class="bg-gradient-noxum text-white px-6 py-2 rounded-full font-bold shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                        Contactar
+                    </a>
+                </div>
+
+                <!-- Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-noxum-purple focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#marketing" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-noxum-purple hover:bg-gray-50 rounded-md">Marketing</a>
+                <a href="#web" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-noxum-purple hover:bg-gray-50 rounded-md">Web</a>
+                <a href="#contable" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-noxum-purple hover:bg-gray-50 rounded-md">Contable</a>
+                <a href="#erp" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-noxum-purple hover:bg-gray-50 rounded-md">ERP</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-noxum-dark pt-32 pb-20 overflow-hidden text-white">
+        <div class="absolute inset-0 bg-gradient-noxum opacity-90"></div>
+        <div class="absolute inset-0 hero-pattern"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <div data-aos="fade-down" class="mb-6 inline-block px-4 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+                <span class="text-noxum-cyan font-semibold tracking-wide uppercase text-sm">Propuesta Exclusiva</span>
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="100" class="font-heading text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                Transformación Digital para <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">Casa Colonial</span>
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Integramos inteligencia artificial, diseño web de vanguardia y sistemas de gestión para potenciar su marca y optimizar sus procesos.
+            </p>
+            <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4">
+                <a href="#marketing" class="bg-white text-noxum-purple px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition">
+                    Ver Paquetes
+                </a>
+                <a href="#erp" class="border-2 border-white/30 text-white px-8 py-3 rounded-full font-bold hover:bg-white/10 transition">
+                    Soluciones ERP
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Categoría 1: Marketing -->
+    <section id="marketing" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-4">Marketing de Contenidos & IA</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Potencie sus redes sociales con estrategias basadas en datos y producción audiovisual de alta calidad.</p>
+                <p class="text-gray-600 max-w-2xl mx-auto">Fotografía en definición 4K y videos en HD con la mejor producción.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Start Up -->
+                <div data-aos="fade-up" class="bg-white rounded-2xl p-8 card-shadow border-t-4 border-noxum-blue relative">
+                    <div class="absolute top-0 right-0 bg-blue-100 text-noxum-blue text-xs font-bold px-3 py-1 rounded-bl-xl uppercase">Start Up</div>
+                    <h3 class="font-heading text-2xl font-bold mb-2">Básico</h3>
+                    <div class="text-4xl font-extrabold text-gray-800 mb-6">$490.000 <span class="text-sm font-normal text-gray-500">/mes</span></div>
+                    
+                    <ul class="space-y-4 mb-8 text-gray-600">
+                        <li class="flex items-start"><i class="fas fa-camera text-noxum-blue mt-1 mr-3"></i><strong>4 Fotografías profesionales</strong></li>
+                        <li class="flex items-start"><i class="fas fa-video text-noxum-blue mt-1 mr-3"></i><strong>1 Video explicativo de alrededor 1 min</strong></li>
+                        <li class="flex items-start"><i class="fas fa-film text-noxum-blue mt-1 mr-3"></i><strong>1 Video corto (Reel/TikTok/Instagram 15s)</strong></li>
+                        <li class="flex items-start"><i class="fas fa-robot text-noxum-purple mt-1 mr-3"></i><strong>Bot de calendario óptimo con notificaciones a Whataspp o Telegram</strong></li>
+                        <li class="flex items-start"><i class="fas fa-chart-line text-noxum-purple mt-1 mr-3"></i><strong>Análisis de Hashtags y redes</strong></li>
+                    </ul>
+                </div>
+
+                <!-- Micro Business (Destacado) -->
+                <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl p-8 card-shadow border-t-4 border-noxum-purple relative transform md:-translate-y-4 z-10">
+                    <div class="absolute top-0 right-0 bg-purple-100 text-noxum-purple text-xs font-bold px-3 py-1 rounded-bl-xl uppercase">Más Popular</div>
+                    <h3 class="font-heading text-2xl font-bold mb-2 text-noxum-purple">Micro Business</h3>
+                    <div class="text-4xl font-extrabold text-gray-800 mb-6">$880.000 <span class="text-sm font-normal text-gray-500">/mes</span></div>
+                    
+                    <ul class="space-y-4 mb-8 text-gray-600">
+                        <li class="flex items-start"><i class="fas fa-camera text-noxum-purple mt-1 mr-3"></i><strong>8 Fotografías profesionales</strong></li>
+                        <li class="flex items-start"><i class="fas fa-video text-noxum-purple mt-1 mr-3"></i><strong>2 Video explicativo de alrededor 1 min</strong></li>
+                        <li class="flex items-start"><i class="fas fa-film text-noxum-purple mt-1 mr-3"></i><strong>2 Videos cortos (Reel/TikTok/Intagram 15s)</strong></li>
+                        <li class="flex items-start"><i class="fas fa-robot text-noxum-purple mt-1 mr-3"></i><strong>Bot de calendario óptimo con notificaciones a Whataspp o Telegram</strong></li>
+                        <li class="flex items-start"><i class="fas fa-pencil-alt text-noxum-purple mt-1 mr-3"></i><strong>Planificación de temáticas</strong></li>
+                        <li class="flex items-start"><i class="fas fa-chart-line text-noxum-purple mt-1 mr-3"></i><strong>Análisis de Hashtags y redes</strong></li>
+                        
+                    </ul>
+                    <a href="#contacto" class="block w-full bg-gradient-noxum text-white text-center py-3 rounded-lg font-bold hover:opacity-90 transition">Elegir Paquete</a>
+                </div>
+
+                <!-- Pro Business -->
+                <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl p-8 card-shadow border-t-4 border-noxum-blue relative">
+                    <div class="absolute top-0 right-0 bg-blue-100 text-noxum-blue text-xs font-bold px-3 py-1 rounded-bl-xl uppercase">Pro Business</div>
+                    <h3 class="font-heading text-2xl font-bold mb-2">Empresarial</h3>
+                    <div class="text-4xl font-extrabold text-gray-800 mb-6">$1.990.000 <span class="text-sm font-normal text-gray-500">/mes</span></div>
+                    
+                    <ul class="space-y-4 mb-8 text-gray-600">
+                        <li class="flex items-start"><i class="fas fa-camera text-noxum-purple mt-1 mr-3"></i><strong>24 Fotografías profesionales</strong></li>
+                        <li class="flex items-start"><i class="fas fa-video text-noxum-purple mt-1 mr-3"></i><strong>4 Video explicativo de alrededor 1 min</strong></li>
+                        <li class="flex items-start"><i class="fas fa-film text-noxum-purple mt-1 mr-3"></i><strong>4 Videos cortos (Reel/TikTok/Intagram 15s)</strong></li>
+                        <li class="flex items-start"><i class="fas fa-robot text-noxum-purple mt-1 mr-3"></i><strong>Bot de calendario óptimo con notificaciones a Whataspp o Telegram</strong></li>
+                        <li class="flex items-start"><i class="fas fa-pencil-alt text-noxum-purple mt-1 mr-3"></i><strong>Planificación de temáticas</strong></li>
+                        <li class="flex items-start"><i class="fas fa-chart-line text-noxum-purple mt-1 mr-3"></i><strong>Análisis de Hashtags y redes</strong></li>
+                        <li class="flex items-start"><i class="fas fa-magic text-noxum-purple mt-1 mr-3"></i> Edición avanzada</li>
+            
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Nota sobre entregables -->
+            <div class="mt-12 bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-6">
+                <div class="p-4 bg-purple-100 rounded-full text-noxum-purple">
+                    <i class="fas fa-star text-2xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-2">Entregables de Valor Agregado</h4>
+                    <p class="text-sm text-gray-600">Todos los paquetes incluyen análisis de redes para hashtags, edición profesional, y planificación de temáticas para orientar grabaciones. Los videos pueden entregarse progresivamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categoría 2: Página Web -->
+    <section id="web" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-800 mb-6">Presencia Web <br><span class="text-gradient-noxum">Inteligente y Escalable</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Desarrollamos <strong>casacolonial.com</strong> no solo como una vitrina, sino como una herramienta de ventas activa. Incluye dominio, hosting seguro y automatizaciones.
+                    </p>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-mobile-alt text-4xl text-gray-300"></i>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-laptop text-4xl text-noxum-blue"></i>
+                        </div>
+                        <div class="p-3 bg-green-50 rounded-lg text-green-600 text-sm font-semibold">
+                            <i class="fab fa-whatsapp mr-1"></i> Integración WhatsApp
+                        </div>
+                    </div>
+
+                    <!-- Bot Feature -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-robot text-noxum-purple text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Bot de Ventas Incluido</h4>
+                                <p class="text-sm text-gray-600 mt-1">Reciba notificaciones automáticas de compras realizadas y pagos autorizados en tiempo real.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" class="space-y-6">
+                    <!-- Web Package 1 -->
+                    <div class="border border-gray-200 rounded-xl p-6 hover:border-noxum-blue transition bg-noxum-bone">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-xl text-gray-800">Micro Business Web</h3>
+                            <span class="text-2xl font-bold text-noxum-blue">$1.450.000</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Ideal para comenzar a vender online rápidamente.</p>
+                        <ul class="text-sm space-y-2 text-gray-700">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Historia, Noticias, Productos</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Carrito con pedido a WhatsApp / QR</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Administración sencilla</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Diseño Mockup + Final</li>
+                        </ul>
+                    </div>
+
+                    <!-- Web Package 2 -->
+                    <div class="border-2 border-noxum-purple rounded-xl p-6 bg-white shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-noxum-purple text-white text-xs font-bold px-3 py-1 rounded-bl-lg">RECOMENDADO</div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-xl text-gray-800">Pro Business Web</h3>
+                            <span class="text-2xl font-bold text-noxum-purple">$2.000.000</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">Automatización total y pagos en línea.</p>
+                        <ul class="text-sm space-y-2 text-gray-700">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> <strong>Pasarela de pagos</strong> (PSE, Tarjetas)</li>
+                            <li><i class="fas fa-robot text-noxum-purple mr-2"></i> <strong>Bot de Noticias:</strong> Actualice enviando un formulario simple</li>
+                            <li><i class="fas fa-robot text-noxum-purple mr-2"></i> <strong>Bot de Stock:</strong> Actualización automática de inventario con un formulario simple</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i> Todo lo del plan Micro</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categoría 3: Software Contable -->
+    <section id="contable" class="py-20 bg-gray-900 text-white relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-noxum-purple rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-noxum-blue rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between bg-white/5 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-white/10">
+                <div class="md:w-2/3 mb-8 md:mb-0">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="p-3 bg-blue-500/20 rounded-lg">
+                            <i class="fas fa-calculator text-2xl text-blue-400"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold">Administración Contable</h2>
+                    </div>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Deje los números en manos de expertos. Un software básico administrado por los contadores de Noxum Soluciones. Precios desde $ 600.000 de acuerdo a sus necesidades
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-300">
+                        <div class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Control de Gastos e Ingresos</div>
+                        <div class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Gestión de Nómina</div>
+                        <div class="flex items-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Detalles de hoja contable</div>
+                        <div class="flex items-center"><i class="fas fa-users text-blue-400 mr-2"></i> 1 o 2 reuniones presenciales/mes según acuerdo de contrato</div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 text-center md:text-right">
+                    <span class="block text-gray-400 text-sm uppercase tracking-wide mb-2">Valor Mensual del Servicio</span>
+                    <span class="block text-5xl font-extrabold text-white mb-6">$600.000</span>
+                    <a href="#contacto" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition">
+                        Solicitar Servicio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categoría 4: ERP -->
+    <section id="erp" class="py-20 bg-noxum-bone">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-noxum-purple font-bold tracking-wider uppercase text-sm">Solución Enterprise</span>
+                <h2 class="font-heading text-3xl md:text-5xl font-bold text-gray-800 mt-2 mb-6">Sistema de Gestión ERP</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">Control total de su empresa. Desde proveedores hasta rendimiento, con capacidad de conectar con su web y redes sociales.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Features Col -->
+                <div data-aos="fade-right" class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                            <i class="fas fa-cogs text-noxum-purple mr-3"></i> Módulos Incluidos
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="feature-item p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
+                                <h4 class="font-bold text-gray-800"><i class="fas fa-truck text-noxum-blue mr-2"></i> Proveedores</h4>
+                                <p class="text-sm text-gray-600 mt-1">Gestión completa de cadena de suministro.</p>
+                            </div>
+                            <div class="feature-item p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
+                                <h4 class="font-bold text-gray-800"><i class="fas fa-users text-noxum-blue mr-2"></i> RRHH & Nómina</h4>
+                                <p class="text-sm text-gray-600 mt-1">Empleados, horarios y pagos.</p>
+                            </div>
+                            <div class="feature-item p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
+                                <h4 class="font-bold text-gray-800"><i class="fas fa-industry text-noxum-blue mr-2"></i> Producción</h4>
+                                <p class="text-sm text-gray-600 mt-1">Control de rendimiento y procesos.</p>
+                            </div>
+                            <div class="feature-item p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
+                                <h4 class="font-bold text-gray-800"><i class="fas fa-sync text-noxum-blue mr-2"></i> Integración Web</h4>
+                                <p class="text-sm text-gray-600 mt-1">Actualiza productos en la web automáticamente.</p>
+                            </div>
+                            <div class="feature-item p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
+                                <h4 class="font-bold text-gray-800"><i class="fas fa-sync text-noxum-blue mr-2"></i> Inventarios</h4>
+                                <p class="text-sm text-gray-600 mt-1">Control de productos y sus proveedores correspondientes.</p>
+                            </div>
+                            <div class="feature-item p-4 rounded-lg bg-gray-50 hover:bg-purple-50 transition">
+                                <h4 class="font-bold text-gray-800"><i class="fas fa-sync text-noxum-blue mr-2"></i> Facturación Digital y Gestión Documental</h4>
+                                <p class="text-sm text-gray-600 mt-1">Apoyo en procesos de documentación requerida y facturación digital.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 border-t pt-6">
+                            <h4 class="font-bold text-gray-800 mb-3">Capacidad del Sistema</h4>
+                            <div class="flex gap-4">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">3 Administradores</span>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">20 Empleados</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">Acceso de por vida*</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Col -->
+                <div data-aos="fade-left" class="lg:col-span-1">
+                    <div class="bg-gradient-noxum text-white rounded-2xl p-8 shadow-xl h-full flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute inset-0 bg-white opacity-5 pattern-dots"></div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Inversión ERP</h3>
+                            <p class="text-blue-200 text-sm mb-6">Elija el modelo que mejor se adapte a su flujo de caja.</p>
+                            
+                            <!-- Opcion Compra -->
+                            <div class="mb-8 p-4 bg-white/10 rounded-xl border border-white/20">
+                                <span class="text-xs uppercase tracking-wide text-blue-200 block mb-1">Compra Única (Lifetime)</span>
+                                <div class="text-3xl font-extrabold mb-1">$16.000.000</div>
+                                <p class="text-xs text-blue-200 mb-2">Posibilidad de pago a 12 meses.</p>
+                                <p class="text-xs text-blue-100 mt-2">*Renovación técnica anual: $350.000</p>
+                            </div>
+
+                            <!-- Opcion Suscripcion -->
+                            <div class="mb-6 p-4 bg-white/10 rounded-xl border border-white/20">
+                                <span class="text-xs uppercase tracking-wide text-blue-200 block mb-1">Modelo Suscripción</span>
+                                <div class="flex justify-between items-end mb-2">
+                                    <div>
+                                        <div class="text-xl font-bold">$280.000</div>
+                                        <div class="text-xs">/Mensual</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xl font-bold">$2.800.000</div>
+                                        <div class="text-xs">/Anual (Ahorro)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="w-full bg-white text-noxum-purple font-bold py-3 rounded-lg hover:bg-gray-100 transition shadow-lg mt-4">
+                            Agendar Demo ERP
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería de Fotos Rotativa INMERSIVA -->
+    <section id="galeria" class="bg-noxum-dark overflow-hidden relative">
+        <div class="absolute inset-0 bg-black/30 z-10 flex items-center justify-center pointer-events-none">
+            <div class="text-center text-white p-6 bg-black/50 rounded-xl">
+                <h3 class="font-heading text-4xl font-extrabold mb-2">Diseño y Producción Audiovisual</h3>
+                <p class="text-lg text-gray-200">Integrando videos en loop para una experiencia dinámica.</p>
+            </div>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="gallery-track" id="gallery-track">
+                <!-- Set 1 (Original Content) - 7 Images, 3 Videos -->
+                
+                <!-- Item 1: Imagen (Horizontal 16:9) -->
+                <div class="gallery-item">
+                    <img src="aromas 2.png" alt="Diseño Web Moderno" />
+                </div>
+                
+                <!-- Item 2: Video (Simulado - Vertical 9:16) -->
+                <div class="gallery-item">
+                    <video autoplay loop muted playsinline src="0919.mp4" >
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+
+                <!-- Item 3: Imagen (Cuadrada 1:1) -->
+                <div class="gallery-item">
+                    <img src="img1.png" alt="Campaña Redes" />
+                </div>
+                
+                <!-- Item 4: Imagen (Horizontal Ancha 21:9) -->
+                <div class="gallery-item">
+                    <img src="img2.png" alt="Módulo ERP" />
+                </div>
+                
+                <!-- Item 5: Video (Simulado - Horizontal 4:3) -->
+                <div class="gallery-item">
+                    <video autoplay loop muted playsinline src="0923.mp4" >
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+                
+                <!-- Item 6: Imagen (Vertical Extrema 5:12) -->
+                <div class="gallery-item">
+                    <img src="img3.png" alt="Contabilidad Digital" />
+                </div>
+                
+                <!-- Item 7: Imagen (Horizontal Estándar 4:3) -->
+                <div class="gallery-item">
+                    <img src="logostar.png" alt="Integración IA" />
+                </div>
+                
+                
+                <!-- Set 2 (Duplicated for seamless loop) -->
+
+                <!-- Item 1: Imagen (Horizontal 16:9) -->
+                <div class="gallery-item">
+                    <img src="aromas 2.png" alt="Diseño Web Moderno (Copia)" />
+                </div>
+                
+                <!-- Item 2: Video (Simulado - Vertical 9:16) -->
+                <div class="gallery-item">
+                    <video autoplay loop muted playsinline src="0919.mp4" poster="aromas 2.png" >
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+
+                <!-- Item 3: Imagen (Cuadrada 1:1) -->
+                <div class="gallery-item">
+                    <img src="img1.png" alt="Campaña Redes (Copia)" />
+                </div>
+                
+                <!-- Item 4: Imagen (Horizontal Ancha 21:9) -->
+                <div class="gallery-item">
+                    <img src="img2.png" alt="Módulo ERP (Copia)" />
+                </div>
+                
+                <!-- Item 5: Video (Simulado - Horizontal 4:3) -->
+                <div class="gallery-item">
+                    <video autoplay loop muted playsinline src="0923.mp4" poster="img2.png" >
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+                
+                <!-- Item 6: Imagen (Vertical Extrema 5:12)-->
+                <div class="gallery-item">
+                    <img src="img3.png" alt="Contabilidad Digital (Copia)" />
+                </div>
+                
+                <!-- Item 7: Imagen (Horizontal Estándar 4:3) -->
+                <div class="gallery-item">
+                    <img src="logostar.png" alt="Integración IA (Copia)" />
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-noxum-dark text-white pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Noxum Soluciones</h3>
+                    <p class="text-gray-400 mb-6">Tecnología, diseño y estrategia para llevar a Casa Colonial al siguiente nivel.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://wa.me/573243700225" class="text-gray-400 hover:text-white text-xl transition"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center items-start md:items-end">
+                    <h4 class="text-lg font-bold mb-4">¿Listo para comenzar?</h4>
+                    <a href="https://wa.me/573243700225" class="flex items-center gap-3 bg-green-600 hover:bg-green-700 px-6 py-3 rounded-full font-bold transition">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        Hablar con Nosotros
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                &copy; 2025 Noxum Soluciones. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar animaciones
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth Scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menu.classList.add('hidden'); // Cerrar menu movil si está abierto
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('bg-noxum-bone/90', 'bg-white/95');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('bg-white/95', 'bg-noxum-bone/90');
+            }
+        });
+    </script>
+</body>
+</html>
